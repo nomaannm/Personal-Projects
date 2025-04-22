@@ -3,6 +3,6 @@
 
 @layer base {
     body{
-        @apply min-h-screen bg-emerald-500 grid place-items-center font-mono tracking-wider px-4;
+        @apply min-h-screen bg-yellow-100 grid place-items-center font-mono tracking-wider px-4;
     }
 }

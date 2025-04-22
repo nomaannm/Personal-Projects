@@ -3,6 +3,7 @@ import { faker } from "@faker-js/faker";
 import ResetButton from "./components/ResetButton.tsx";
 import ScoreCard from "./components/ScoreCard.tsx";
 import UserTypings from "./components/UserTypings.tsx";
+import Caret from "./components/Caret.tsx";
 
 const words = faker.word.words(10);
 const GenerateWords = ({words} : {words: string})=> {
@@ -31,6 +32,7 @@ function App(){
         <div>
             <CountdownTimer timeLeft={10}/>
             <WordsContainer>
+                <Caret/>
                 <GenerateWords words={words}/>
                 <UserTypings className={'absolute inset-0'} userInput={"test"}/>
             </WordsContainer>

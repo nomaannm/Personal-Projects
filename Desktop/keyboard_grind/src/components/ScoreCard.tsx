@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from 'framer-motion';
 import {formatPercentage} from "../utility-functions/helpers.ts";
 
 const ScoreCard = ({
