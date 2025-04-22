@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import {formatPercentage} from "../utility-functions/helpers.ts";
 
 const ScoreCard = ({
     errors, accuracyPercentage, total, className }: {errors: number, accuracyPercentage: number, total: number, className?: string}) => {
@@ -16,7 +17,7 @@ const ScoreCard = ({
                        className={'text-xl font-semibold'}>RESULTS !!!</motion.li>
             <motion.li initial={initial}
                        animate={animate}
-                       transition={{...duration, delay: 1}}>Accuracy: {accuracyPercentage}</motion.li>
+                       transition={{...duration, delay: 1}}>Accuracy: {formatPercentage(accuracyPercentage)}</motion.li>
             <motion.li initial={initial}
                        animate={animate}
                        transition={{...duration, delay: 1.5}}
