@@ -11,6 +11,8 @@ const useWords = (count: number) => {
     const updateWords = useCallback(() => {
         setWords(generateWords(count))
     }, [count]);
+
+    return { words, updateWords };
 };
 
 export default useWords;

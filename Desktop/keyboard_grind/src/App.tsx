@@ -1,11 +1,10 @@
 import { ReactNode } from 'react';
-import { faker } from "@faker-js/faker";
 import ResetButton from "./components/ResetButton.tsx";
 import ScoreCard from "./components/ScoreCard.tsx";
 import UserTypings from "./components/UserTypings.tsx";
-import Caret from "./components/Caret.tsx";
+import useEngine from "./hooks/useEngine.ts";
 
-const words = faker.word.words(10);
+
 const GenerateWords = ({words} : {words: string})=> {
     return(
         <div className={'text-sky-700'}>
@@ -27,10 +26,11 @@ const WordsContainer = ({children} : {children: ReactNode}) => {
 };
 
 
-function App(){
+const App = () => {
+    const { state, words, timeLeft} = useEngine();
     return(
         <div>
-            <CountdownTimer timeLeft={10}/>
+            <CountdownTimer timeLeft={timeLeft}/>
             <WordsContainer>
                 <GenerateWords words={words}/>
                 <UserTypings className={'absolute inset-0'} userInput={"test"}/>
