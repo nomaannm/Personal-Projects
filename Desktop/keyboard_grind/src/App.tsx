@@ -32,7 +32,6 @@ function App(){
         <div>
             <CountdownTimer timeLeft={10}/>
             <WordsContainer>
-                <Caret/>
                 <GenerateWords words={words}/>
                 <UserTypings className={'absolute inset-0'} userInput={"test"}/>
             </WordsContainer>

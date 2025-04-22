@@ -1,3 +1,5 @@
+import Caret from "./Caret.tsx";
+
 const UserTypings = ({
     userInput,
     className
@@ -7,7 +9,9 @@ const UserTypings = ({
         <div className={className}>
             {typedCharacters.map((char, index) => {
                 return <Character key={`${char}_${index}`} char={char}/>
+
             })}
+            <Caret/>
         </div>
     );
 }
