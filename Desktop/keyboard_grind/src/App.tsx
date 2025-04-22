@@ -33,7 +33,7 @@ const App = () => {
             <CountdownTimer timeLeft={timeLeft}/>
             <WordsContainer>
                 <GenerateWords words={words}/>
-                <UserTypings className={'absolute inset-0'} userInput={typed}/>
+                <UserTypings className={'absolute inset-0'} userInput={typed} words={words}/>
             </WordsContainer>
             <ResetButton className={"mx-auto mt-10 text-slate-500"}
                         onRestart={() => null} />
