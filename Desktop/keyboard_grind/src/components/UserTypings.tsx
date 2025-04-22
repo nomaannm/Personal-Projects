@@ -2,13 +2,14 @@ import Caret from "./Caret.tsx";
 
 const UserTypings = ({
     userInput,
-    className
-} : {userInput: string, className?: string}) => {
+    className,
+    targetText
+} : {userInput: string, className?: string, targetText: string}) => {
     const typedCharacters = userInput.split("");
     return(
         <div className={className}>
             {typedCharacters.map((char, index) => {
-                return <Character key={`${char}_${index}`} char={char}/>
+                return <Character key={`${char}_${index}`} actualChar={targetText[index] || ""} typedChar={char}/>
 
             })}
             <Caret/>
@@ -16,8 +17,11 @@ const UserTypings = ({
     );
 }
 
-const Character = ({char} : {char: string}) => {
-    return <span className={'text-primary-400'}>{char}</span>
+const Character = ({actualChar, typedChar} : {actualChar: string, typedChar: string}) => {
+    const yellowColor: string = 'text-yellow-400';
+    const redColor: string = 'text-red-400';
+    return (actualChar === typedChar ? <span className={yellowColor}>{actualChar}</span> :
+        <span className={redColor}>{actualChar}</span>);
 };
 
 export default UserTypings;
