@@ -3,19 +3,19 @@ import ResetButton from "./components/ResetButton.tsx";
 import ScoreCard from "./components/ScoreCard.tsx";
 import UserTypings from "./components/UserTypings.tsx";
 import useEngine from "./hooks/useEngine.ts";
-import {ToastContainer} from "react-toastify";
-
+import { ToastContainer } from "react-toastify";
+import { calculateAccuracyPercentage } from "./utility-functions/helpers.ts"
 
 const GenerateWords = ({words} : {words: string})=> {
     return(
-        <div className={'text-sky-700'}>
+        <div className={'text-slate-500 font-semibold font-mono'}>
             {words}
         </div>
     );
 };
 const CountdownTimer = ({timeLeft} : {timeLeft: number}) => {
     return(
-        <h2 className={'font-medium text-sky-600'}>Time: {timeLeft} </h2>
+        <h2 className={'font-medium text-amber-100'}>Time: {timeLeft} </h2>
     );
 };
 const WordsContainer = ({children} : {children: ReactNode}) => {
@@ -28,7 +28,7 @@ const WordsContainer = ({children} : {children: ReactNode}) => {
 
 
 const App = () => {
-    const { state, words, timeLeft, typed} = useEngine();
+    const { state, words, timeLeft, typed, restart, errors, totalTyped} = useEngine();
     return(
         <div>
             <ToastContainer/>
@@ -38,8 +38,11 @@ const App = () => {
                 <UserTypings className={'absolute inset-0'} userInput={typed} words={words}/>
             </WordsContainer>
             <ResetButton className={"mx-auto mt-10 text-slate-500"}
-                        onRestart={() => null} />
-            <ScoreCard errors={20} accuracyPercentage={70} total={100}/>
+                        onRestart={restart} />
+            <ScoreCard state={state}
+                       errors={errors}
+                       accuracyPercentage={calculateAccuracyPercentage(errors, totalTyped)}
+                       total={totalTyped}/>
 
 
         </div>
