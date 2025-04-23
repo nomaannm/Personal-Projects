@@ -1,7 +1,10 @@
-import {useCallback, useState} from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import useWords from "./useWords.ts";
 import useCountdownTimer from "./useCountdownTimer.ts";
 import useTypings from "./useTypings.ts";
+import { ToastContainer, toast } from "react-toastify";
+import playSound from "../utility-functions/playSound.ts";
+
 
 export type State = 'start' | 'running' | 'finished';
 const NUMBER_OF_WORDS: number = 12;
@@ -14,11 +17,33 @@ const useEngine = () => {
     const { typed, cursor, clearTyped, resetTotalTyped, totalTyped } = useTypings(state !== 'finished');
     const [errors, setErrors] = useState(0);
 
+    const isStarting: boolean = state === 'start' && cursor > 0;
+    const countErrors = () => {
+
+    }
     const sumErrors = useCallback(()=> {
         const wordsReached = words.substring(0, cursor);
         setErrors((prevErrors): number => prevErrors + countErrors(typed, wordsReached));
 
-    }, []);
+    }, [typed, words, cursor]);
+
+    useEffect(() => {
+        if(isStarting){
+            setState('running');
+            startCountDown();
+        }
+    }, [cursor, startCountDown, isStarting])
+
+    //When the time is finished
+    useEffect(() => {
+        if(!timeLeft){
+            const toastID = toast.warning("⏰ Time's up!!", {
+
+            });
+            playSound("src/assets/sound effects/timeisup.mp3");
+            setState("finished");
+        }
+    }, [timeLeft]);
 
 
 

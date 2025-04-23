@@ -3,6 +3,7 @@ import ResetButton from "./components/ResetButton.tsx";
 import ScoreCard from "./components/ScoreCard.tsx";
 import UserTypings from "./components/UserTypings.tsx";
 import useEngine from "./hooks/useEngine.ts";
+import {ToastContainer} from "react-toastify";
 
 
 const GenerateWords = ({words} : {words: string})=> {
@@ -30,6 +31,7 @@ const App = () => {
     const { state, words, timeLeft, typed} = useEngine();
     return(
         <div>
+            <ToastContainer/>
             <CountdownTimer timeLeft={timeLeft}/>
             <WordsContainer>
                 <GenerateWords words={words}/>
